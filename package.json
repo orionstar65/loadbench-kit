@@ -1,0 +1,66 @@
+{
+  "name": "loadbench-kit",
+  "description": "Standalone Node.js performance and load-testing utilities for Docker services.",
+  "type": "module",
+  "version": "1.1.4",
+  "author": "Loadbench contributors",
+  "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*.js": "./dist/*.js",
+    "./*": "./dist/*.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "typescript",
+    "package"
+  ],
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "undici": "^7.24.7"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.60.2",
+    "@eslint/js": "^9.39.2",
+    "@types/ejs": "^3.1.5",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.0.10",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "shx": "^0.4.0",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3 <6.0.0",
+    "typescript-eslint": "^8.54.0"
+  },
+  "scripts": {
+    "prepack": "npm run build",
+    "pretest": "npm run lint",
+    "preversion": "npm run test",
+    "check": "tsc --noEmit",
+    "build": "tsc --build && shx cp src/reports/report.ejs dist/reports/",
+    "format": "npm run format:src && npm run format:docs && npm run format:test",
+    "format:src": "prettier --write src && eslint src --fix",
+    "format:docs": "prettier --write --prose-wrap=always **/*.md",
+    "format:test": "prettier --write test && eslint test --fix",
+    "get:name": "npm pkg get name --workspaces=false | tr -d \\\"",
+    "get:semver": "npm pkg get version --workspaces=false | tr -d \\\"",
+    "get:semver:tag": "version=$(npm run version --silent) && echo \"v${version}\"",
+    "get:latest": "git describe --tags $(git rev-list --tags --max-count=1)",
+    "lint": "eslint src && prettier --check src",
+    "test": "npm run test:unit",
+    "test:unit": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --detectOpenHandles --runInBand unit",
+    "test:integration": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --detectOpenHandles --runInBand integration",
+    "update": "ncu -u && npm install && npm audit fix",
+    "postbuild": "tsc-alias"
+  }
+}

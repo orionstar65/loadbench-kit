@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+
+    // <!-- START moduleOptions -->
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    // <!-- END   moduleOptions -->
+
+    // <!-- START emitOptions -->
+    "diagnostics": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "strict": true,
+    // <!-- END   emitOptions -->
+
+    "paths": {
+      "loadbench-kit": ["./src/index.ts"],
+      "loadbench-kit/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.*",
+    "**/*.test.*"
+  ]
+}
