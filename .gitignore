@@ -1,0 +1,33 @@
+dist
+node_modules
+*.tsbuildinfo
+*.tgz
+
+# MacOS files
+.DS_Store
+
+# Environment
+.scratch
+.env*
+docker/secrets
+
+# Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+*.log
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Coverage
+lib-cov
+coverage
+*.lcov
+
+# Dependency Caches
+.cache
+.node_repl_history
+.npm
+.eslintcache
