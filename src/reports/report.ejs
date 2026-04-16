@@ -1,0 +1,43 @@
+# <%= title %>
+<% if (summary) { -%>
+
+<%- summary %>
+<% } -%>
+<% for (const [name, reports] of groups) { -%>
+
+## <%= name %>
+
+**Summary**
+
+<%- table(["Concurrency", "Count", "Success", "Failure", "Rate", "RPS"], reports.map(r => [
+  String(r.tier.concurrency),
+  String(r.summary?.count ?? 0),
+  String(r.summary?.success ?? 0),
+  String(r.summary?.failure ?? 0),
+  pct(r.summary?.failureRate ?? 0),
+  String(r.summary?.requestsPerSecond ?? 0),
+])) %>
+
+**Latency**
+
+<%- table(["Concurrency", "Min", "p50", "p90", "p99", "Max"], reports.map(r => [
+  String(r.tier.concurrency),
+  ms(r.latency?.minMs ?? NaN),
+  ms(r.latency?.p50Ms ?? NaN),
+  ms(r.latency?.p90Ms ?? NaN),
+  ms(r.latency?.p99Ms ?? NaN),
+  ms(r.latency?.maxMs ?? NaN),
+])) %>
+<% if (reports.some(r => r.memory && r.memory.count > 0)) { -%>
+
+**Memory**
+
+<%- table(["Concurrency", "Baseline RSS", "Peak RSS", "Peak Heap", "Trend"], reports.map(r => [
+  String(r.tier.concurrency),
+  mb(r.memory?.baselineRssBytes ?? NaN),
+  mb(r.memory?.peakRssBytes ?? NaN),
+  mb(r.memory?.peakHeapUsedBytes ?? NaN),
+  r.memory?.trend ?? "unknown",
+])) %>
+<% } -%>
+<% } -%>
