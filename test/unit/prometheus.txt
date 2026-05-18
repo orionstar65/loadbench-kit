@@ -1,0 +1,39 @@
+# HELP process_cpu_user_seconds_total Total user CPU time spent in seconds.
+# TYPE process_cpu_user_seconds_total counter
+process_cpu_user_seconds_total{host="localhost",env="local",version=""} 0.184316
+
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes{host="localhost",env="local",version=""} 50000000
+
+# HELP nodejs_heap_size_total_bytes Process heap size total from Node.js.
+# TYPE nodejs_heap_size_total_bytes gauge
+nodejs_heap_size_total_bytes{host="localhost",env="local",version=""} 10000000
+
+# HELP nodejs_heap_size_used_bytes Process heap size used from Node.js.
+# TYPE nodejs_heap_size_used_bytes gauge
+nodejs_heap_size_used_bytes{host="localhost",env="local",version=""} 5000000
+
+# HELP nodejs_eventloop_lag_seconds Lag of event loop in seconds.
+# TYPE nodejs_eventloop_lag_seconds gauge
+nodejs_eventloop_lag_seconds{host="localhost",env="local",version=""} 0.01
+
+# HELP nodejs_active_handles_total Number of active handles.
+# TYPE nodejs_active_handles_total gauge
+nodejs_active_handles_total{host="localhost",env="local",version=""} 5
+
+# HELP nodejs_gc_duration_seconds Garbage collection duration in seconds.
+# TYPE nodejs_gc_duration_seconds histogram
+nodejs_gc_duration_seconds_bucket{le="0.001",kind="minor",host="localhost",env="local",version=""} 11
+nodejs_gc_duration_seconds_bucket{le="+Inf",kind="minor",host="localhost",env="local",version=""} 11
+nodejs_gc_duration_seconds_sum{kind="minor",host="localhost",env="local",version=""} 0.003
+nodejs_gc_duration_seconds_count{kind="minor",host="localhost",env="local",version=""} 11
+
+# HELP http_request_duration_seconds Duration of HTTP requests in seconds.
+# TYPE http_request_duration_seconds histogram
+
+# HELP http_requests_total Total number of HTTP requests.
+# TYPE http_requests_total counter
+
+# HELP http_requests_in_flight Number of HTTP requests currently being processed.
+# TYPE http_requests_in_flight gauge
