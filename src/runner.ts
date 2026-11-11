@@ -1,14 +1,9 @@
 import os from "node:os";
 import { Worker, WorkerOptions } from "node:worker_threads";
 
-import Container, {
-  ContainerInfo,
-} from "loadbench-kit/docker/container.js";
+import Container, { ContainerInfo } from "loadbench-kit/docker/container.js";
 import { Poller } from "loadbench-kit/metrics/poller.js";
-import type {
-  MetricsSample,
-  ResponseSample,
-} from "loadbench-kit/samples.js";
+import type { MetricsSample, ResponseSample } from "loadbench-kit/samples.js";
 import { waitFor } from "loadbench-kit/utils.js";
 
 /**
